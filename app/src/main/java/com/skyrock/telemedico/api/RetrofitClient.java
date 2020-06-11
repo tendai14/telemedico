@@ -2,6 +2,7 @@ package com.skyrock.telemedico.api;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.skyrock.telemedico.events.EventsService;
 
 import java.util.concurrent.TimeUnit;
 
@@ -12,7 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitClient {
 
     //define base url
-    private static final String BASE_URL="http://192.168.8.101:5000:5000/api/";
+    private static final String BASE_URL="https://dev.itin.africa/telemed/api/";
 
     //create retrofit instance
     private static RetrofitClient mInstance;
@@ -50,6 +51,10 @@ public class RetrofitClient {
             mInstance = new RetrofitClient();
         }
         return mInstance;
+    }
+
+    public EventsService getEventsService(){
+        return retrofit.create(EventsService.class);
     }
 
 }

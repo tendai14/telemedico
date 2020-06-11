@@ -2,6 +2,7 @@ package com.skyrock.telemedico.authorization;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.skyrock.telemedico.services.LoginService;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -9,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class LoginRetrofitClient {
 
 
-    private static final String BASE_URL="http://192.168.8.101:5000/";
+    private static final String BASE_URL="https://dev.itin.africa/telemed/";
 
     private static LoginRetrofitClient mInstance;
     private Retrofit retrofit;
@@ -30,6 +31,10 @@ public class LoginRetrofitClient {
             mInstance = new LoginRetrofitClient();
         }
         return mInstance;
+    }
+
+    public LoginService getLoginService(){
+        return retrofit.create(LoginService.class);
     }
 
 }

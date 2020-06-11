@@ -9,6 +9,6 @@ public class LoginUtils {
         return "Basic " + Base64.encodeToString(credential.getBytes(),Base64.NO_WRAP);
     }
     public static String getClientAuthorizationHeader(){
-        return getClientAuthorizationHeader("1", "5neOzmKN8cziCk7XytylQctuRS1HUA0VJT67ZyZB");
+        return getClientAuthorizationHeader("2", "8ad430750-da24-55bd-e938-ffe6d5dc83c");
     }
 }
