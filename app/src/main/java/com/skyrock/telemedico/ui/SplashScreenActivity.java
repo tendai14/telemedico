@@ -11,44 +11,33 @@ import com.skyrock.telemedico.storage.SharedPreferenceManager;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
-
     private final int SPLASH_DISPLAY_LENGTH = 3000;
+
+    SharedPreferenceManager sharedPreferenceManager = SharedPreferenceManager.getInstance(SplashScreenActivity.this);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                /* Create an Intent that will start the Menu-Activity. */
-                Intent mainIntent = new Intent(SplashScreenActivity.this, MainActivity.class);
-                SplashScreenActivity.this.startActivity(mainIntent);
-                SplashScreenActivity.this.finish();
-            }
-        }, SPLASH_DISPLAY_LENGTH);
+        if (sharedPreferenceManager.isLogggedIn()){
+            Intent intent = new Intent(SplashScreenActivity.this, EventsActivity.class);
+            startActivity(intent);
+        }else{
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    /* Create an Intent that will start the Menu-Activity. */
+                    Intent mainIntent = new Intent(SplashScreenActivity.this, MainActivity.class);
+                    SplashScreenActivity.this.startActivity(mainIntent);
+                    SplashScreenActivity.this.finish();
+                }
+            }, SPLASH_DISPLAY_LENGTH);
+        }
+
+
     }
 
-//
-//
-//
-//    SharedPreferenceManager sharedPreferenceManager = SharedPreferenceManager.getInstance(SplashScreenActivity.this);
-//
-//        if (sharedPreferenceManager.isLogggedIn()){
-//        Intent intent = new Intent(SplashScreenActivity.this, ProductsListActivity.class);
-//        startActivity(intent);
-//    }else {
-//        new Handler().postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                /* Create an Intent that will start the Menu-Activity. */
-//                Intent mainIntent = new Intent(SplashScreenActivity.this, MainActivity.class);
-//                SplashScreenActivity.this.startActivity(mainIntent);
-//                SplashScreenActivity.this.finish();
-//            }
-//        }, SPLASH_DISPLAY_LENGTH);
-//    }
-//}
 
     @Override
     protected void onStart() {
@@ -57,34 +46,34 @@ public class SplashScreenActivity extends AppCompatActivity {
         SharedPreferenceManager sharedPreferenceManager = SharedPreferenceManager.getInstance(SplashScreenActivity.this);
 
 
-//        if (sharedPreferenceManager.isLogggedIn()){
-//            Intent intent = new Intent(SplashScreenActivity.this, ProductsListActivity.class);
-//            startActivity(intent);
-//        }else {
+            if (sharedPreferenceManager.isLogggedIn()){
+                Intent intent = new Intent(SplashScreenActivity.this, EventsActivity.class);
+                startActivity(intent);
+            }else {
 
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    /* Create an Intent that will start the Menu-Activity. */
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        /* Create an Intent that will start the Menu-Activity. */
 
-                    Intent mainIntent = new Intent(SplashScreenActivity.this, MainActivity.class);
-                    SplashScreenActivity.this.startActivity(mainIntent);
+                        Intent mainIntent = new Intent(SplashScreenActivity.this, MainActivity.class);
+                        SplashScreenActivity.this.startActivity(mainIntent);
 
-                    SplashScreenActivity.this.finish();
-                }
-            }, SPLASH_DISPLAY_LENGTH);
-
+                        SplashScreenActivity.this.finish();
+                    }
+                }, SPLASH_DISPLAY_LENGTH);
+            }
 
     }
 
     @Override
     protected void onPostResume() {
         super.onPostResume();
-//        SharedPreferenceManager sharedPreferenceManager = SharedPreferenceManager.getInstance(SplashScreenActivity.this);
-//        if (sharedPreferenceManager.isLogggedIn()){
-//            Intent intent = new Intent();
-//            startActivity(intent);
-//        }else {
+        SharedPreferenceManager sharedPreferenceManager = SharedPreferenceManager.getInstance(SplashScreenActivity.this);
+        if (sharedPreferenceManager.isLogggedIn()){
+            Intent intent = new Intent(SplashScreenActivity.this, EventsActivity.class);
+            startActivity(intent);
+        }else {
 
             new Handler().postDelayed(new Runnable() {
                 @Override
@@ -97,7 +86,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                     SplashScreenActivity.this.finish();
                 }
             }, SPLASH_DISPLAY_LENGTH);
-        //}
+        }
 
     }
 }

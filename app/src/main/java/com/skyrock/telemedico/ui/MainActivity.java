@@ -2,6 +2,7 @@ package com.skyrock.telemedico.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -39,8 +40,6 @@ public class MainActivity extends AppCompatActivity {
                 Progress.showProgressDialog("User Logging in", "Please Wait....");
                 authenticateUser();
             }
-
-
 
 
         });
@@ -104,6 +103,10 @@ public class MainActivity extends AppCompatActivity {
                     sharedPreferenceManager.saveUserCredentials(userLoginResponseModel);
 
                     Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+
+                    Intent intent = new Intent(MainActivity.this, EventsActivity.class);
+                    startActivity(intent);
+
                 }else {
                     Toast.makeText(MainActivity.this, response.message(), Toast.LENGTH_LONG).show();
                     Progress.dismissProgress();

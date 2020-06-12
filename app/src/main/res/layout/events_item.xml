@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:id="@+id/price_list"
+        app:cardCornerRadius="8dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+
+        >
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="20dp"
+
+            >
+
+            <TextView
+                android:id="@+id/hear_rate_title"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Pulse Rate:"
+                android:layout_marginStart="10dp"
+                android:textSize="30dp"
+                android:textStyle="bold"
+                android:layout_marginLeft="10dp"
+                android:drawableStart="@drawable/heart_rate_ico_three"
+                android:drawableLeft="@drawable/heart_rate_ico_three" />
+
+            <TextView
+                android:id="@+id/heart_rate"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="pulse"
+                android:textSize="20dp"
+                android:layout_marginStart="10dp"
+                android:textStyle="bold"
+                android:layout_marginLeft="10dp" />
+
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="100dp">
+
+            <TextView
+                android:id="@+id/temp_rate_title"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Body Temperature:"
+                android:layout_marginStart="5dp"
+                android:textStyle="bold"
+                android:textSize="25dp"
+                android:layout_marginLeft="5dp"
+                android:drawableStart="@drawable/temperature_ico_one"
+                android:drawableLeft="@drawable/temperature_ico_one"/>
+
+            <TextView
+                android:id="@+id/temp"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="temp"
+                android:textSize="20dp"
+                android:layout_marginStart="10dp"
+                android:textStyle="bold"
+                android:layout_marginLeft="10dp" />
+
+
+
+        </LinearLayout>
+
+
+
+        <Button
+            android:id="@+id/btn_proceed_to_notes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="200dp"
+            android:layout_marginBottom="5dp"
+            android:background="#2661FA"
+            android:text="View Diagnosis Notes"
+            android:textColor="#fff" />
+
+
+
+
+    </androidx.cardview.widget.CardView>
+
+
+
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#ccc" />
+
+
+
+</LinearLayout>

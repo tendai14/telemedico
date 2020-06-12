@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn= "navigation_view"
+    >
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_data_elements"
+            android:icon="@drawable/ic_favorite_border"
+            android:title="Data Elements"
+            />
+
+        <item
+            android:id="@+id/nav_programs"
+            android:icon="@drawable/ic_blur_circular"
+            android:title="Programs"
+            />
+
+        <item
+            android:id="@+id/nav_program_stages"
+            android:icon="@drawable/ic_event_note_black"
+            android:title="Program Stages"
+            />
+
+
+        <item
+            android:id="@+id/nav_tei"
+            android:icon="@drawable/ic_center_focus_strong"
+            android:title="Tracked Entity Instances"
+            />
+
+    </group>
+
+    <item android:title="Settings">
+
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_exit_to_app"
+            android:title="Logout"
+            />
+    </item>
+
+
+</menu>
