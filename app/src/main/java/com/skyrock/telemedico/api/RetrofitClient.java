@@ -3,6 +3,10 @@ package com.skyrock.telemedico.api;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.skyrock.telemedico.events.EventsService;
+import com.skyrock.telemedico.services.DataElementsService;
+import com.skyrock.telemedico.services.OrganisationUnitsService;
+import com.skyrock.telemedico.services.ProgramStagesService;
+import com.skyrock.telemedico.services.ProgramsService;
 
 import java.util.concurrent.TimeUnit;
 
@@ -55,6 +59,22 @@ public class RetrofitClient {
 
     public EventsService getEventsService(){
         return retrofit.create(EventsService.class);
+    }
+
+    public DataElementsService getDataElementsService(){
+        return retrofit.create(DataElementsService.class);
+    }
+
+    public OrganisationUnitsService getOrganisationUnitsService(){
+        return retrofit.create(OrganisationUnitsService.class);
+    }
+
+    public ProgramsService getProgramsService(){
+        return retrofit.create(ProgramsService.class);
+    }
+
+    public ProgramStagesService getProgramStagesService(){
+        return retrofit.create(ProgramStagesService.class);
     }
 
 }

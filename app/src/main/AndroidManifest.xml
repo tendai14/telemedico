@@ -15,7 +15,11 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.EventsActivity"></activity>
+        <activity android:name=".ui.TrackedEntityInstancesActivity"></activity>
+        <activity android:name=".ui.ProgramStagesActivity" />
+        <activity android:name=".ui.ProgramsActivity" />
+        <activity android:name=".ui.DataElementsActivity" />
+        <activity android:name=".ui.EventsActivity" />
         <activity android:name=".ui.MainActivity" />
         <activity android:name=".ui.SplashScreenActivity">
             <intent-filter>
