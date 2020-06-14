@@ -27,7 +27,7 @@
         <item
             android:id="@+id/nav_tei"
             android:icon="@drawable/ic_center_focus_strong"
-            android:title="Tracked Entity Instances"
+            android:title="Org Units"
             />
 
     </group>

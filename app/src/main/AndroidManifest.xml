@@ -5,6 +5,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
@@ -15,7 +16,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.TrackedEntityInstancesActivity"></activity>
+        <activity android:name=".ui.OrgUnitsActivity"></activity>
         <activity android:name=".ui.ProgramStagesActivity" />
         <activity android:name=".ui.ProgramsActivity" />
         <activity android:name=".ui.DataElementsActivity" />

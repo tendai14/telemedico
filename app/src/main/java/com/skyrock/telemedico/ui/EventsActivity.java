@@ -137,7 +137,25 @@ public class EventsActivity extends AppCompatActivity implements NavigationView.
                 finish();
                 break;
 
+            case R.id.nav_data_elements:
+                Intent intent_dataElements = new Intent(EventsActivity.this, DataElementsActivity.class);
+                startActivity(intent_dataElements);
+                break;
 
+            case R.id.nav_programs:
+                Intent intent_programs = new Intent(EventsActivity.this, ProgramsActivity.class);
+                startActivity(intent_programs);
+                break;
+
+            case R.id.nav_program_stages:
+                Intent intent_stages = new Intent(EventsActivity.this, ProgramStagesActivity.class);
+                startActivity(intent_stages);
+                break;
+
+            case R.id.nav_tei:
+                Intent intent_org_unit = new Intent(EventsActivity.this, OrgUnitsActivity.class);
+                startActivity(intent_org_unit);
+                break;
         }
 
         return true;
@@ -165,12 +183,14 @@ public class EventsActivity extends AppCompatActivity implements NavigationView.
                     nextPage ++;
 
                 }else{
+                    Progress.dismissProgress();
                     Toast.makeText(EventsActivity.this, response.message(), Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<EventsResponseModelList> call, Throwable t) {
+                Progress.dismissProgress();
                 Toast.makeText(EventsActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });

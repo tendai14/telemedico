@@ -3,6 +3,7 @@ package com.skyrock.telemedico.ui;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,13 +13,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.skyrock.telemedico.Models.DataElementsModel;
-import com.skyrock.telemedico.Models.ProgramsModel;
-import com.skyrock.telemedico.Models.ProgramsResponseModelList;
+import com.google.android.material.navigation.NavigationView;
+import com.skyrock.telemedico.Models.OrganisationUnitResponseModelList;
+import com.skyrock.telemedico.Models.OrganisationUnitsModel;
 import com.skyrock.telemedico.R;
-import com.skyrock.telemedico.adapters.DataElementsRecyclerviewAdapter;
+import com.skyrock.telemedico.adapters.EventsRecyclerViewAdapter;
+import com.skyrock.telemedico.adapters.OrgUnitsRecyclerviewAdapter;
 import com.skyrock.telemedico.adapters.ProgramsRecyclerviewAdapter;
 import com.skyrock.telemedico.api.RetrofitClient;
+import com.skyrock.telemedico.events.EventsModel;
 import com.skyrock.telemedico.progress.Progress;
 import com.skyrock.telemedico.storage.SharedPreferenceManager;
 
@@ -29,26 +32,25 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ProgramsActivity extends AppCompatActivity {
+public class OrgUnitsActivity extends AppCompatActivity {
 
-
-    Toolbar toolbar;
     private RecyclerView recyclerView;
-    private ProgramsRecyclerviewAdapter adapter;
+    private OrgUnitsRecyclerviewAdapter adapter;
     private Integer nextPage=1;
     private int hasMore= 1;
-    private List<ProgramsModel> programs = new ArrayList<>();
+    private List<OrganisationUnitsModel> orgUnits =new ArrayList<>();
+
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_programs);
-
+        setContentView(R.layout.activity_tracked_entity_instances);
 
         toolbar = findViewById(R.id.endlini_toolbar);
         setSupportActionBar(toolbar);
 
-        toolbar.setTitle("Programs");
+        toolbar.setTitle("Org Units");
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             toolbar.setTitleTextColor(getColor(R.color.whiteCardColor));
         }
@@ -63,16 +65,16 @@ public class ProgramsActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ProgramsActivity.this, EventsActivity.class);
+                Intent intent = new Intent(OrgUnitsActivity.this, EventsActivity.class);
                 startActivity(intent);
             }
         });
 
-        recyclerView = findViewById(R.id.show_programs_recycler);
+        recyclerView = findViewById(R.id.show_tei_recycler);
 
 
         //recyclerView Section
-        adapter = new ProgramsRecyclerviewAdapter(programs);
+        adapter = new OrgUnitsRecyclerviewAdapter(orgUnits);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -82,8 +84,8 @@ public class ProgramsActivity extends AppCompatActivity {
 
         Progress.initProgressDialog(this);
         Progress.setProgressColor();
-        Progress.showProgressDialog("Loading Programs", "Please Wait");
-        fetchPrograms();
+        Progress.showProgressDialog("Loading Org Units", "Please Wait");
+        fetchOrgUnits();
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -91,49 +93,46 @@ public class ProgramsActivity extends AppCompatActivity {
                 super.onScrollStateChanged(recyclerView, newState);
                 if (!recyclerView.canScrollVertically(1)) {
                     if(hasMore >= 1) {
-                        Toast.makeText(ProgramsActivity.this, "Loading More programs", Toast.LENGTH_LONG).show();
-                        fetchPrograms();
+                        Toast.makeText(OrgUnitsActivity.this, "Loading More Org Units", Toast.LENGTH_LONG).show();
+                        fetchOrgUnits();
                     }
                 }
             }
         });
     }
 
-    private void fetchPrograms() {
+    private void fetchOrgUnits() {
         SharedPreferenceManager sharedPreferenceManager = SharedPreferenceManager.getInstance(this);
-        Call<ProgramsResponseModelList> programsResponseModelListCall = RetrofitClient
+        Call<OrganisationUnitResponseModelList> organisationUnitResponseModelListCall = RetrofitClient
                 .getInstance()
-                .getProgramsService()
-                .getPrograms(sharedPreferenceManager.getUserAuthorizationHeader(), nextPage);
+                .getOrganisationUnitsService()
+                .getOrgUnits(sharedPreferenceManager.getUserAuthorizationHeader(), nextPage);
 
-        programsResponseModelListCall.enqueue(new Callback<ProgramsResponseModelList>() {
+        organisationUnitResponseModelListCall.enqueue(new Callback<OrganisationUnitResponseModelList>() {
             @Override
-            public void onResponse(Call<ProgramsResponseModelList> call, Response<ProgramsResponseModelList> response) {
+            public void onResponse(Call<OrganisationUnitResponseModelList> call, Response<OrganisationUnitResponseModelList> response) {
                 if (response.isSuccessful()){
                     Progress.dismissProgress();
-                    assert response.body() != null;
-                    generateProgramsList(response.body().getPrograms());
+                    generateOrgUnitsList(response.body().getOrganisationUnits());
                     hasMore = response.body().getPageCount();
                     nextPage ++;
-                }else {
-                    Progress.dismissProgress();
-                    Toast.makeText(ProgramsActivity.this, response.message(), Toast.LENGTH_SHORT).show();
+
+                }else{
+                    Toast.makeText(OrgUnitsActivity.this, response.message(), Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<ProgramsResponseModelList> call, Throwable t) {
-                Progress.dismissProgress();
-                Toast.makeText(ProgramsActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            public void onFailure(Call<OrganisationUnitResponseModelList> call, Throwable t) {
 
+                Toast.makeText(OrgUnitsActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
 
+    void generateOrgUnitsList(List<OrganisationUnitsModel> orgUnits){
 
-    void generateProgramsList(List<ProgramsModel> programsModelList){
-
-        this.programs.addAll(programsModelList);
+        this.orgUnits.addAll(orgUnits);
 
         adapter.notifyDataSetChanged();
     }

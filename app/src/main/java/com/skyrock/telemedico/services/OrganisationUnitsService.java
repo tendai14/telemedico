@@ -9,5 +9,5 @@ import retrofit2.http.Query;
 
 public interface OrganisationUnitsService {
     @GET("organisationUnits.json")
-    Call<OrganisationUnitResponseModelList> getPrograms(@Header("Authorization") String auth, @Query("page") int page);
+    Call<OrganisationUnitResponseModelList> getOrgUnits(@Header("Authorization") String auth, @Query("page") int page);
 }
