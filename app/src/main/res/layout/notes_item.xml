@@ -1,6 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="70dp"
+    >
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/note_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:text="Temperature"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <me.biubiubiu.justifytext.library.JustifyTextView
+                android:id="@+id/notes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="25dp"
+                android:text="For this reason, doctors may sometimes recommend medications called antipyretics to lower a person’s temperature.
+                  Examples include nonsteroidal anti-inflammatory drugs (NSAIDs), such as ibuprofen. Acetaminophen (Tylenol) can also reduce a fever. Aspirin can help, but it is not suitable for children, and it may not be suitable for people who take blood thinners."
+                android:textSize="15dp"
+                android:textStyle="bold"
+                />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:text="High Blood Pressure"
+                android:layout_marginTop="180dp"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <me.biubiubiu.justifytext.library.JustifyTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="210dp"
+                android:text="For this reason, doctors may sometimes recommend medications called antipyretics to lower a person’s temperature.
+                  Examples include nonsteroidal anti-inflammatory drugs (NSAIDs), such as ibuprofen. Acetaminophen (Tylenol) can also reduce a fever. Aspirin can help, but it is not suitable for children, and it may not be suitable for people who take blood thinners."
+                android:textSize="15dp"
+                android:textStyle="bold"
+                />
+
+        </androidx.cardview.widget.CardView>
+
+
+
+</ScrollView>
