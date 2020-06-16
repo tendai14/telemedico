@@ -7,22 +7,22 @@ import android.content.Context;
 import android.content.Intent;
 import android.media.RingtoneManager;
 import android.net.Uri;
-import android.os.Build;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
+
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.skyrock.telemedico.R;
 import com.skyrock.telemedico.events.DataValuesModel;
 import com.skyrock.telemedico.events.EventsModel;
 import com.skyrock.telemedico.ui.EventsActivity;
+import com.skyrock.telemedico.ui.NotesActivity;
 
 import java.util.List;
 
@@ -37,7 +37,6 @@ public class EventsRecyclerViewAdapter extends RecyclerView.Adapter<EventsRecycl
         this.events = events;
         this.context = context;
     }
-
 
     @NonNull
     @Override
@@ -73,7 +72,8 @@ public class EventsRecyclerViewAdapter extends RecyclerView.Adapter<EventsRecycl
         }
 
         holder.viewNotes.setOnClickListener((v)->{
-            Toast.makeText(context, "hahaha", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(context, NotesActivity.class);
+            context.startActivity(intent);
         });
 
     }
@@ -123,7 +123,6 @@ public class EventsRecyclerViewAdapter extends RecyclerView.Adapter<EventsRecycl
                 (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
 
         notificationManager.notify(0, n);
-
 
 
     }
